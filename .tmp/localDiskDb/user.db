@@ -1,6 +1,7 @@
 {"$$indexCreated":{"fieldName":"id","unique":true,"sparse":false}}
 {"$$indexCreated":{"fieldName":"email","unique":true,"sparse":false}}
-{"createdAt":1687938961683,"updatedAt":1687938961683,"id":1,"username":"","email":"usama@gmail.com","password":"$2a$10$3cHPQRUMt2dmRt2eUC7WU.sQ0VNXISIOCY8SFTBUFLmPpiP40K9e2","_id":1}
-{"createdAt":1687940130080,"updatedAt":1687940130080,"id":2,"username":"usama","email":"usama1@gmail.com","password":"$2a$10$.0fd/uZ6wgKThS1WU6DluenfOu/CxAkFkJM80pAqrRgbgBdoYGf0m","_id":2}
-{"createdAt":1687940145167,"updatedAt":1687940145167,"id":3,"username":"usama raza","email":"usamaraza@gmail.com","password":"$2a$10$SuLemb/1wi9aVZllrZ7gP.WgdNuXIHZ81YMmuYWwZp0.OUBmmk.BG","_id":3}
-{"createdAt":1687948108378,"updatedAt":1687948108378,"id":4,"username":"Hm usama","email":"hmusama@gmail.com","password":"$2a$10$3rUUc6KqAaBfxz4/GRkfh.jzPx7UYS40Im0yiMZTsAQZ21CLyCIBq","_id":4}
+{"username":"Hm usama","email":"hmusama@gmail.com","password":"$2a$10$y8RruPZagp39XZs05xABneiNDhBPMRmpyj7Pnk2sQOK3D766zkmbC","createdAt":1687960207700,"updatedAt":1687960207700,"id":1,"_id":1}
+{"$$deleted":true,"_id":1}
+{"username":"usama raza ","email":"usama@gmail.com","password":"123243234","createdAt":1687960207700,"updatedAt":1687960207700,"id":1,"_id":1}
+{"$$deleted":true,"_id":1}
+{"username":"usama raza 1","email":"usama@gmail.com","password":"123243234","createdAt":1687960207700,"updatedAt":1687960207700,"id":1,"_id":1}
