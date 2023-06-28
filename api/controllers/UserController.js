@@ -83,17 +83,23 @@ module.exports = {
 
             // Update the user attributes
             user.username = username;
-            // user.email = email;
-            // user.password = password;
+            user.email = email;
+            user.password = password;
 
 
             // Save the updated user
-            console.log('User Save=====>', user);
+            // console.log('User Save=====>', user);
             // console.log('User Save=====>', user.save());
             // user = new User({});
-            const updatedUser = await user.save().exec(function (err, usr) {
-                console.log('User Update', err)
-            });
+            // const updatedUser = await user.save()
+            // const updatedUser = await User.updateOne({ user })
+            const updatedUser = await User.update({ username })
+                // .set({ user });
+                // console.log('updatedUser=====>', updatedUser);
+                // console.log('updatedUser=====>', User.updateOne(user))
+                .exec(function (err, usr) {
+                    console.log('User Update---->', err)
+                });
 
             return res.json({ message: 'User updated successfully.', user: updatedUser });
         } catch (error) {
