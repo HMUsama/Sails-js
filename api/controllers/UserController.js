@@ -110,7 +110,7 @@ module.exports = {
             // console.log('token=====>', token);
 
             // 3. Send email with reset instructions
-            await sendEmail.fn(user)
+            await sendEmail.fn(user.email)
             // await send - password - email.fn(user.email);
             // const data = emailService.sendWelcomeEmail();
 
