@@ -1,4 +1,7 @@
 const bcrypt = require('bcryptjs');
+// const authService = require('../helpers/authService');
+const sendEmail = require('../helpers/sendEmail')
+
 
 
 module.exports = {
@@ -24,7 +27,6 @@ module.exports = {
             return res.serverError(error);
         }
     },
-
     login: async function (req, res) {
         try {
             console.log('=====>', req.body);
@@ -75,36 +77,48 @@ module.exports = {
             const { username, email, password } = req.body;
             // Find the user by ID
             let user = await User.findOne({ id: userId });
-            console.log('User=====>', user);
             // If user is not found, return an error
             if (!user) {
                 return res.status(404).json({ message: 'User not found.' });
             }
-
             // Update the user attributes
             user.username = username;
             user.email = email;
             user.password = password;
-
-
             // Save the updated user
-            // console.log('User Save=====>', user);
-            // console.log('User Save=====>', user.save());
-            // user = new User({});
-            // const updatedUser = await user.save()
+            // console.log('User Save=====>', user); 
             const updatedUser = await User.updateOne(userId).set(user);
-            // const updatedUser = await User.updateOne({ id: userId })
-            // .set({ user });
-            // console.log('updatedUser=====>', updatedUser);
-            // console.log('updatedUser=====>', User.updateOne(user))
-            // .exec(function (err, usr) {
-            //     console.log('User Update---->', err)
-            // });
-
             return res.json({ message: 'User updated successfully.', user: updatedUser });
         } catch (error) {
             console.error('Error ------->', error);
             return res.serverError(error);
+        }
+    },
+    forgotPassword: async function (req, res) {
+        try {
+            const { email } = req.body;
+
+            // 1. Find user by email
+            const user = await User.findOne({ email });
+            if (!user) {
+                return res.badRequest('User not found');
+            }
+            // console.log('User=====>', user);
+            // sails.log(user)
+            // // 2. Generate password reset token
+            // const token = await authService.fn(user);
+            // console.log('token=====>', token);
+
+            // 3. Send email with reset instructions
+            await sendEmail.fn(user)
+            // await send - password - email.fn(user.email);
+            // const data = emailService.sendWelcomeEmail();
+
+            // 4. Handle success
+            return res.ok('Password reset instructions sent');
+        } catch (err) {
+            // Handle errors
+            return res.serverError(err);
         }
     },
 };

@@ -27,6 +27,8 @@ module.exports.routes = {
   'POST /login': 'UserController.login',
   'GET /logout': 'UserController.logout',
   'PUT /users/:id': 'UserController.updateUser',
+  'POST /forgot-password': 'UserController.forgotPassword',
+
 
 
 
