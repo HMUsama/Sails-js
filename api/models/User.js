@@ -2,6 +2,7 @@ module.exports = {
     attributes: {
         username: {
             type: 'string',
+            required: true,
         },
         email: {
             type: 'string',
@@ -12,6 +13,7 @@ module.exports = {
             type: 'string',
             required: true,
         },
-        // Other attributes and associations 
+        // role: 'string',
+        // required: true,
     },
 };

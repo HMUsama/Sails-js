@@ -21,28 +21,15 @@ module.exports.routes = {
 
   '/': { view: 'pages/homepage' },
 
-  'GET /users': 'ArticlesController.getAllUsers',
+  'GET /all_users': 'account/UserController.getUsers',
 
-  'POST /signup': 'UserController.signup',
-  'POST /login': 'UserController.login',
-  'GET /logout': 'UserController.logout',
-  'PUT /users/:id': 'UserController.updateUser',
-  'POST /forgot-password': 'UserController.forgotPassword',
+  'POST /signup': 'account/UserController.signup',
+  'POST /login': 'account/UserController.login',
+  'GET /logout': 'account/UserController.logout',
+  'PUT /users/:id': 'account/UserController.updateUser',
+  'POST /forgot-password': 'account/UserController.forgotPassword',
 
-
-
-
-
-  /***************************************************************************
-  *                                                                          *
-  * More custom routes here...                                               *
-  * (See https://sailsjs.com/config/routes for examples.)                    *
-  *                                                                          *
-  * If a request to a URL doesn't match any of the routes in this file, it   *
-  * is matched against "shadow routes" (e.g. blueprint routes).  If it does  *
-  * not match any of those, it is matched against static assets.             *
-  *                                                                          *
-  ***************************************************************************/
-
+  // PARENTS MODULES 
+  'POST /addParentDetails': 'parents/ParentController.addParentDetails',
 
 };

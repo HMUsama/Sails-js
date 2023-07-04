@@ -25,7 +25,7 @@ module.exports = {
             const emailData = { email: recipientEmail };
             console.log('emailData ---->', emailData)
             // const templatePath = path.resolve(__dirname, '../../views/emails/welcomeEmail.ejs');
-            const templatePath = path.resolve(sails.config.appPath, 'views', 'emails', 'welcomeEmail.ejs', emailData);
+            const templatePath = path.resolve(sails.config.appPath, 'views', 'emails', 'welcomeEmail.ejs');
             const emailHtml = fs.readFileSync(templatePath, ['utf-8', emailData]);
             // const emailHtml = ejs.render(emailHtmlData, emailData);
             // const emailTemplate = await sails.helpers.fs.read(templatePath, 'utf-8');

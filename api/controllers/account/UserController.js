@@ -1,6 +1,6 @@
 const bcrypt = require('bcryptjs');
 // const authService = require('../helpers/authService');
-const sendEmail = require('../helpers/sendEmail')
+const sendEmail = require('../../helpers/sendEmail')
 
 
 
@@ -8,8 +8,8 @@ module.exports = {
 
     signup: async function (req, res) {
         try {
-            const { username, email, password } = req.body;
-            console.log('signup=====>', req.body);
+            const { username, email, password, role } = req.body;
+            // console.log('signup=====>', req.body);
             // Check if the email is already registered
             const existingUser = await User.findOne({ email });
             if (existingUser) {
@@ -20,22 +20,22 @@ module.exports = {
             const hashedPassword = await bcrypt.hash(password, 10);
 
             // Create a new user record
-            const newUser = await User.create({ username, email, password: hashedPassword }).fetch();
+            const newUser = await User.create({ username, email, password: hashedPassword, role }).fetch();
 
             return res.json({ message: 'Signup successful.', user: newUser });
         } catch (error) {
             return res.serverError(error);
         }
     },
+
     login: async function (req, res) {
         try {
-            console.log('=====>', req.body);
             const { email, password } = req.body;
             // console.log(email, password);
 
             //   Find the user by email
             const user = await User.findOne({ email });
-            console.log('==user===>', user);
+            // console.log('==user===>', user); 
 
             // If user is not found, return an error
             if (!user) {
@@ -58,6 +58,7 @@ module.exports = {
             return res.serverError(error);
         }
     },
+
     logout: (req, res) => {
         // req.session.destroy(function(err) {
         //     if (err) {
@@ -71,22 +72,22 @@ module.exports = {
         //     return res.ok({ message: 'Logout successful.' });
         //   });
     },
+
     updateUser: async function (req, res) {
         try {
             let userId = req.params.id; // Assuming you pass the user ID as a URL parameter
-            const { username, email, password } = req.body;
+            const { username, email } = req.body;
             // Find the user by ID
             let user = await User.findOne({ id: userId });
             // If user is not found, return an error
-            if (!user) {
-                return res.status(404).json({ message: 'User not found.' });
-            }
+            if (!user) return res.status(404).json({ message: 'User not found.' });
             // Update the user attributes
             user.username = username;
             user.email = email;
-            user.password = password;
+            // user.password = password;
+
             // Save the updated user
-            // console.log('User Save=====>', user); 
+            // console.log('User Save=====>', user);
             const updatedUser = await User.updateOne(userId).set(user);
             return res.json({ message: 'User updated successfully.', user: updatedUser });
         } catch (error) {
@@ -94,6 +95,7 @@ module.exports = {
             return res.serverError(error);
         }
     },
+
     forgotPassword: async function (req, res) {
         try {
             const { email } = req.body;
@@ -119,6 +121,16 @@ module.exports = {
         } catch (err) {
             // Handle errors
             return res.serverError(err);
+        }
+    },
+
+    getUsers: async function (req, res) {
+        try {
+            const users = await User.find();
+
+            return res.json(users);
+        } catch (error) {
+            return res.serverError(error);
         }
     },
 };
